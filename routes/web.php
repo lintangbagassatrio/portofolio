@@ -31,6 +31,10 @@ Route::post('/blog/{id}/comment', [HomeController::class, 'storeComment'])->name
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::post('/contact', [HomeController::class, 'storeContact'])->name('contact.store');
 
+Route::get('/storage/{path}', function ($path) {
+    return redirect(\Illuminate\Support\Facades\Storage::disk('public')->url($path));
+})->where('path', '.*');
+
 /*
 |--------------------------------------------------------------------------
 | Authentication Routes
